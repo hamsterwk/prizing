@@ -50,9 +50,14 @@ body{
     border-radius: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
+    user-select: none;
 }
 
 #winnerId{
     font-family: my-font-en;
     font-size: 80px;
+}
+
+#btn_start{
+    user-select: none;
 }
