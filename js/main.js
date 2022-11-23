@@ -59,13 +59,22 @@ function renderPrizeInfo(){
 }
 
 function get_next(){
-    if(cur_id < prizeList.length){
+    if(on_prizing==true){
+        alert("请先停止当前抽奖！");
+        return;
+    }
+
+    if(cur_id < prizeList.length - 1){
         cur_id += 1;
     }
     renderPrizeInfo();
 }
 
 function get_prev(){
+    if(on_prizing==true){
+        alert("请先停止当前抽奖！");
+        return;
+    }
     if(cur_id > 0){
         cur_id -= 1;
     }
