@@ -15,19 +15,34 @@ body{
     background-color: black;
 }
 .dark{
-    border-radius: 10px;
-    background-image: url("../dbackground.jpg");
     background-repeat: repeat;
-    font-family: my-font-en,my-font;
-    color: #fff;
 }
 .main{
-    width: 60%;
-    margin-top: 15%;
-    padding-top: 1%;
+    font-size: 60px;
+}
+
+.sidebar{
+    font-size: 28px;
+}
+
+.sidebar1{
+    font-size: 36px;
+}
+
+.sidebar2{
+    font-size: 24px;
+}
+
+.sidebar-winner{
+    text-shadow:-1px 0 red,0 1px red,1px 0 red,0 -1px red;
+}
+.mycontainer{
     border: 5px solid;
     border-color: #ccc;
-    font-size: 60px;
+    border-radius: 10px;
+    background-image: url("../dbackground.jpg");
+    font-family: my-font-en,my-font;
+    color: #fff;
 }
 
 #title{
@@ -38,10 +53,10 @@ body{
     margin-bottom: 5%;
 }
 
+
+
 #container2{
-    width: 60%;
-    margin-top:4%;
-    font-size: 60px;
+    margin-top:3%;
 }
 
 .my_btn{
@@ -51,13 +66,31 @@ body{
     padding-top: 20px;
     padding-bottom: 20px;
     user-select: none;
+    font-size: 60px;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 #winnerId{
     font-family: my-font-en;
-    font-size: 80px;
+    font-size: 120px;
+    line-height: 180px;
+    text-shadow:-5px 0 red,0 5px red,5px 0 red,0 -5px red;
 }
 
 #btn_start{
     user-select: none;
+}
+
+#container1{
+    margin-top: 12%;
+    padding-top: 1%;
+}
+
+#prizeName{
+    font-size: 40px;
+}
+
+#btn-empty{
+    margin-top: 5%;
 }
