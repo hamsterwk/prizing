@@ -1,0 +1,53 @@
+@font-face {
+    font-family: my-font;
+    src: url(../font/word.ttf);
+}
+
+body{
+    background-image: url("../background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+}
+.dark{
+    border-radius: 10px;
+    background-image: url("../dbackground.jpg");
+    background-repeat: repeat;
+    font-family: 'Consolas',my-font;
+    color: #fff;
+}
+.main{
+    width: 60%;
+    margin-top: 15%;
+    padding-top: 1%;
+    border: 5px solid;
+    border-color: #ccc;
+    font-size: 60px;
+}
+
+#title{
+    margin-bottom: 5%;
+}
+
+#number{
+    margin-bottom: 5%;
+}
+
+#container2{
+    width: 60%;
+    margin-top:4%;
+    font-size: 60px;
+}
+
+.my_btn{
+    border: 2px solid;
+    border-color: #ccc;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#winnerId{
+    font-family: 'Consolas';
+    font-size: 80px;
+}
