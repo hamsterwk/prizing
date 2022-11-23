@@ -3,6 +3,11 @@
     src: url(../font/word.ttf);
 }
 
+@font-face {
+    font-family: my-font-en;
+    src: url(../font/consola.ttf);
+}
+
 body{
     background-image: url("../background.jpg");
     background-size: cover;
@@ -13,7 +18,7 @@ body{
     border-radius: 10px;
     background-image: url("../dbackground.jpg");
     background-repeat: repeat;
-    font-family: 'Consolas',my-font;
+    font-family: my-font-en,my-font;
     color: #fff;
 }
 .main{
@@ -48,6 +53,6 @@ body{
 }
 
 #winnerId{
-    font-family: 'Consolas';
+    font-family: my-font-en;
     font-size: 80px;
 }
