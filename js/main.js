@@ -240,6 +240,6 @@ window.onload=function(){
     renderPrizeInfo(cur_id);
 
     setTimeout(() => {
-        num_person = 300;//prompt("请输入参与抽奖总人数："); 
+        num_person = prompt("请输入参与抽奖总人数："); 
     }, 300);
 }
