@@ -53,6 +53,7 @@ prizeList=[
 ]
 var cur_id = 0; //Current Prize id.
 function generaterWinnerId(winner_id){
+    if(winner_id==0)return "&nbsp;";
     winner_id = "" + parseInt(winner_id);
     while(winner_id.length<3){
         winner_id = "0" + winner_id;
@@ -73,13 +74,15 @@ function renderPrizeInfo(rid, sidebar=false){
     var winnerText="";
     var sidebarText="";
     for(var i=0;i<cur_prize.num;i++){
-        if(cur_prize.winner_id[i]==0){
-            sidebarText += "&nbsp;";
-        }else{
+        if(cur_prize.winner_id[i]!=0){
             sidebarText = sidebarText + `
-            <div class="col text-center" id="sidebar-${rid}-${i}" onclick="empty_one(${rid}, ${i})" onmouseover="show_empty('sidebar-${rid}-${i}')" onmouseout="renderPrizeInfo(${rid}, sidebar=true);renderPrizeInfo(${cur_id});">${generaterWinnerId(cur_prize.winner_id[i])}</div>
+            <div class="col text-center" id="sidebar-${rid}-${i}" onclick="empty_one(${rid}, ${i})" onmouseover="show_empty(${rid},${i})" onmouseout='restore_sidebar(${rid}, ${i})'">${generaterWinnerId(cur_prize.winner_id[i])}</div>
             `
             winnerText = winnerText + generaterWinnerId(cur_prize.winner_id[i])
+        }else{
+            sidebarText = sidebarText + `
+            <div class="col text-center" id="sidebar-${rid}-${i}" onclick="empty_one(${rid}, ${i})" onmouseover="show_empty(${rid},${i})" onmouseout='restore_sidebar(${rid}, ${i})'">&nbsp;</div>
+            `
         }
         if(i!=cur_prize.num-1){
             winnerText += "<br>";
@@ -97,6 +100,9 @@ function renderPrizeInfo(rid, sidebar=false){
     divwinner.innerHTML = winnerText;
     if(sidebar==true){
         divsidebar.innerHTML = sidebarText;
+        if(sidebarText.length==0){
+            sidebarText = "&nbsp;"
+        }
         console.log(sidebarText);
     }
     img = document.getElementById("image");
@@ -148,7 +154,7 @@ function anime(){
         if(i!=cur_prize.num_selected){
             continue;
         }
-        rand_id = Math.ceil(Math.random() * num_person);
+        rand_id = Math.ceil(Math.random() * 999);
         cur_prize.winner_id[i] = rand_id;
     }
     renderPrizeInfo(cur_id);
@@ -168,10 +174,13 @@ function dealPrizing(btn){
         btn.innerHTML="停止!"
     }else{
         //开奖
-        winner = Math.ceil(Math.random() * num_person);
         clearInterval(timer);
         timer = null;
+
+        winner = Math.ceil(Math.random() * num_person);
+        prizeList[cur_id].winner_id[prizeList[cur_id].num_selected] = winner;
         renderPrizeInfo(cur_id,sidebar=true);
+
         prizeList[cur_id].num_selected += 1;
         prizeList[cur_id].num_selected %= prizeList[cur_id].winner_id.length;
         on_prizing = false;
@@ -193,11 +202,18 @@ function empty(){
 function empty_one(id, wid){
     prizeList[id].winner_id[wid] = 0;
     prizeList[id].num_selected = wid;
-    renderPrizeInfo(id, sidebar=true);
+    
+    renderPrizeInfo(id,sidebar=true);
+    cur_id = id;
 }
 
-function show_empty(id){
-    document.getElementById(id).innerText="清空";
+function show_empty(rid, wid){
+    if(prizeList[rid].winner_id[wid]==0)return;
+    document.getElementById(`sidebar-${rid}-${wid}`).innerHTML="清空";
+}
+
+function restore_sidebar(rid, wid){
+    document.getElementById(`sidebar-${rid}-${wid}`).innerHTML=(generaterWinnerId(prizeList[rid].winner_id[wid]))
 }
 
 window.onload=function(){
@@ -218,11 +234,11 @@ window.onload=function(){
     btn_prev = document.getElementById("btn-prev");
     btn_next = document.getElementById("btn-next");
     btn_empty = document.getElementById("btn-empty");
-    cur_id = 0;
+    cur_id = prizeList.length-1;
     on_prizing = false;
 
-    btn_prev.onclick = get_prev;
-    btn_next.onclick = get_next;
+    btn_prev.onclick = get_next;
+    btn_next.onclick = get_prev;
     btn_start.onclick = function(){dealPrizing(btn_start)}
     btn_empty.onclick = empty;
 
