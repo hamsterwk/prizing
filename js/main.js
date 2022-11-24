@@ -77,7 +77,7 @@ function renderPrizeInfo(rid, sidebar=false){
             sidebarText += "&nbsp;";
         }else{
             sidebarText = sidebarText + `
-            <div class="col text-center" id="sidebar-${cur_id}-${i}" onclick="empty_one(${rid}, ${i})" onmouseover="show_empty('sidebar-${rid}-${i}')" onmouseout="renderPrizeInfo(${rid}, sidebar=true);renderPrizeInfo(${cur_id}, sidebar=true);">${generaterWinnerId(cur_prize.winner_id[i])}</div>
+            <div class="col text-center" id="sidebar-${rid}-${i}" onclick="empty_one(${rid}, ${i})" onmouseover="show_empty('sidebar-${rid}-${i}')" onmouseout="renderPrizeInfo(${rid}, sidebar=true);renderPrizeInfo(${cur_id});">${generaterWinnerId(cur_prize.winner_id[i])}</div>
             `
             winnerText = winnerText + generaterWinnerId(cur_prize.winner_id[i])
         }
