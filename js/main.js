@@ -5,43 +5,50 @@ prizeList=[
         "rank":"一等奖",
         "name":"云台相机",
         "num":1,
-        "winner_id":[0]
+        "winner_id":[0],
+        "num_selected":0
     },
     {
         "rank":"二等奖",
         "name":"ysl礼盒",
         "num":1,
-        "winner_id":[0]
+        "winner_id":[0],
+        "num_selected":0
     },
     {
         "rank":"二等奖",
         "name":"Beats耳机",
         "num":1,
-        "winner_id":[0]
+        "winner_id":[0],
+        "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"防晒伞",
         "num":2,
-        "winner_id":[0,0]
+        "winner_id":[0,0],
+        "num_selected":0
     },
     {
         "rank":"三等奖",
-        "name":"野兽派香薰",
+        "name":"香薰",
         "num":2,
-        "winner_id":[0,0]
+        "winner_id":[0,0],
+        "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"键盘",
         "num":2,
-        "winner_id":[0,0]
+        "winner_id":[0,0],
+        "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"移动硬盘",
         "num":2,
-        "winner_id":[0,0]
+        "winner_id":[0,0],
+        "num_selected":0
     },
 ]
 var cur_id = 0; //Current Prize id.
@@ -66,13 +73,13 @@ function renderPrizeInfo(rid, sidebar=false){
     var winnerText="";
     var sidebarText="";
     for(var i=0;i<cur_prize.num;i++){
-        winnerText = winnerText + generaterWinnerId(cur_prize.winner_id[i])
         if(cur_prize.winner_id[i]==0){
             sidebarText += "&nbsp;";
         }else{
             sidebarText = sidebarText + `
-            <div class="col text-center">${generaterWinnerId(cur_prize.winner_id[i])}</div>
+            <div class="col text-center" id="sidebar-${cur_id}-${i}" onclick="empty_one(${cur_id}, ${i})" onmouseover="show_empty('sidebar-${cur_id}-${i}')" onmouseout="renderPrizeInfo(${cur_id}, sidebar=true)">${generaterWinnerId(cur_prize.winner_id[i])}</div>
             `
+            winnerText = winnerText + generaterWinnerId(cur_prize.winner_id[i])
         }
         if(i!=cur_prize.num-1){
             winnerText += "<br>";
@@ -88,7 +95,10 @@ function renderPrizeInfo(rid, sidebar=false){
         divwinner.style.lineHeight="200px";
     }
     divwinner.innerHTML = winnerText;
-    if(sidebar==true)divsidebar.innerHTML = sidebarText;
+    if(sidebar==true){
+        divsidebar.innerHTML = sidebarText;
+        console.log(sidebarText);
+    }
     img = document.getElementById("image");
     img.src = "./img/"+rid+".jpg";
 }
@@ -124,7 +134,7 @@ function highlight(item){
 
 function dimlight(item){
     item.style.color="white";
-    item.style.borderColor="white";
+    item.style.borderColor="#9fb4c7";
     item.style.cursor="default";
 }
 
@@ -135,6 +145,9 @@ var num_person = null;
 function anime(){
     cur_prize = prizeList[cur_id];
     for(var i=0;i<cur_prize.num;i++){
+        if(i!=cur_prize.num_selected){
+            continue;
+        }
         rand_id = Math.ceil(Math.random() * num_person);
         cur_prize.winner_id[i] = rand_id;
     }
@@ -159,6 +172,8 @@ function dealPrizing(btn){
         clearInterval(timer);
         timer = null;
         renderPrizeInfo(cur_id,sidebar=true);
+        prizeList[cur_id].num_selected += 1;
+        prizeList[cur_id].num_selected %= prizeList[cur_id].winner_id.length;
         on_prizing = false;
         btn.innerHTML="开抽！"
     }
@@ -169,13 +184,23 @@ function empty(){
         for(var j=0;j<prizeList[i].winner_id.length;j++){
             prizeList[i].winner_id[j]=0;
         }
+        prizeList.num_selected = 0;
         renderPrizeInfo(i, sidebar=true);
     }
     renderPrizeInfo(cur_id);
 }
 
-window.onload=function(){
+function empty_one(id, wid){
+    prizeList[id].winner_id[wid] = 0;
+    prizeList[id].num_selected = wid;
+    renderPrizeInfo(id, sidebar=true);
+}
 
+function show_empty(id){
+    document.getElementById(id).innerText="清空";
+}
+
+window.onload=function(){
     for(var i=0;i<prizeList.length;i++){
         var prize = prizeList[i];
         item = document.createElement("div");

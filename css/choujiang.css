@@ -13,6 +13,7 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-color: black;
+    user-select: none;
 }
 .dark{
     background-repeat: repeat;
@@ -23,6 +24,7 @@ body{
 
 .sidebar{
     font-size: 28px;
+    padding-bottom: 20px;
 }
 
 .sidebar1{
@@ -38,7 +40,7 @@ body{
 }
 .mycontainer{
     border: 5px solid;
-    border-color: #ccc;
+    border-color: #9fb4c7;
     border-radius: 10px;
     background-image: url("../dbackground.jpg");
     font-family: my-font-en,my-font;
@@ -61,7 +63,7 @@ body{
 
 .my_btn{
     border: 2px solid;
-    border-color: #ccc;
+    border-color: #9fb4c7;
     border-radius: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -78,12 +80,9 @@ body{
     text-shadow:-5px 0 red,0 5px red,5px 0 red,0 -5px red;
 }
 
-#btn_start{
-    user-select: none;
-}
 
 #container1{
-    margin-top: 12%;
+    margin-top: 11%;
     padding-top: 1%;
 }
 
@@ -92,5 +91,7 @@ body{
 }
 
 #btn-empty{
-    margin-top: 5%;
+    margin-top: 10%;
+    font-size:40pt;
+    padding: 10pt;
 }
