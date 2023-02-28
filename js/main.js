@@ -94,8 +94,8 @@ function renderPrizeInfo(rid, sidebar=false){
         divwinner.style.fontSize="120px";
         divwinner.style.lineHeight="135px";
     }else{
-        divwinner.style.fontSize="180px";
-        divwinner.style.lineHeight="180px";
+        divwinner.style.fontSize="160px";
+        divwinner.style.lineHeight="240px";
     }
     divwinner.innerHTML = winnerText;
     if(sidebar==true){
