@@ -55,10 +55,10 @@ var cur_id = 0; //Current Prize id.
 function generaterWinnerId(winner_id){
     if(winner_id==0)return "&nbsp;";
     winner_id = "" + parseInt(winner_id);
-    while(winner_id.length<3){
+    while(winner_id.length<4){
         winner_id = "0" + winner_id;
     }
-    winner_id = winner_id[0] + " " + winner_id[1] + " " +winner_id[2];
+    winner_id = winner_id[0] + " " + winner_id[1] + " " +winner_id[2] + " " +winner_id[3];
     return winner_id;
 }
 
@@ -94,8 +94,8 @@ function renderPrizeInfo(rid, sidebar=false){
         divwinner.style.fontSize="120px";
         divwinner.style.lineHeight="135px";
     }else{
-        divwinner.style.fontSize="200px";
-        divwinner.style.lineHeight="200px";
+        divwinner.style.fontSize="180px";
+        divwinner.style.lineHeight="180px";
     }
     divwinner.innerHTML = winnerText;
     if(sidebar==true){
@@ -154,7 +154,7 @@ function anime(){
         if(i!=cur_prize.num_selected){
             continue;
         }
-        rand_id = Math.ceil(Math.random() * 999);
+        rand_id = Math.ceil(Math.random() * 9999);
         cur_prize.winner_id[i] = rand_id;
     }
     renderPrizeInfo(cur_id);
