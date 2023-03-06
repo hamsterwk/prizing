@@ -40,12 +40,13 @@ body{
 }
 .mycontainer{
     border: 5px solid;
-    border-color: #9fb4c7;
+    border-color: #c6558f;
+    background-color: rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-    background-image: url("../dbackground.jpg");
     font-family: my-font-en,my-font;
-    color: #fff;
+    color: #c6558f;
 }
+
 
 #title{
     margin-bottom: 5%;
@@ -55,27 +56,30 @@ body{
     margin-bottom: 5%;
 }
 
-
+#image{
+    border: 3px solid;
+    border-radius: 3px;
+    border-color: #c6558f;
+}
 
 #container2{
     margin-top:3%;
 }
 
 .my_btn{
-    border: 2px solid;
-    border-color: #9fb4c7;
+    border: 5px solid;
+    border-color: #c6558f;
     border-radius: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
     user-select: none;
     font-size: 60px;
-    margin-left: 1%;
-    margin-right: 1%;
 }
 
 #winnerId{
     font-family: my-font-en;
     font-size: 120px;
+    color:white;
     line-height: 180px;
     text-shadow:-5px 0 red,0 5px red,5px 0 red,0 -5px red;
 }
