@@ -5,55 +5,55 @@ prizeList=[
         "rank":"一等奖",
         "name":"云台相机",
         "num":1,
-        "winner_id":[0],
+        "winner_id":[-1],
         "num_selected":0
     },
     {
         "rank":"二等奖",
         "name":"ysl礼盒",
         "num":1,
-        "winner_id":[0],
+        "winner_id":[-1],
         "num_selected":0
     },
     {
         "rank":"二等奖",
         "name":"Beats耳机",
         "num":1,
-        "winner_id":[0],
+        "winner_id":[-1],
         "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"防晒伞",
         "num":2,
-        "winner_id":[0,0],
+        "winner_id":[-1,-1],
         "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"香薰",
         "num":2,
-        "winner_id":[0,0],
+        "winner_id":[-1,-1],
         "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"键盘",
         "num":2,
-        "winner_id":[0,0],
+        "winner_id":[-1,-1],
         "num_selected":0
     },
     {
         "rank":"三等奖",
         "name":"移动硬盘",
         "num":2,
-        "winner_id":[0,0],
+        "winner_id":[-1,-1],
         "num_selected":0
     },
 ]
 var cur_id = 0; //Current Prize id.
 function generaterWinnerId(winner_id){
-    if(winner_id==0)return "&nbsp;";
+    if(winner_id==-1)return "&nbsp;";
     winner_id = "" + parseInt(winner_id);
     while(winner_id.length<3){
         winner_id = "0" + winner_id;
@@ -154,7 +154,7 @@ function anime(){
         if(i!=cur_prize.num_selected){
             continue;
         }
-        rand_id = Math.ceil(Math.random() * 999);
+        rand_id = Math.floor(Math.random() * 1000);
         cur_prize.winner_id[i] = rand_id;
     }
     renderPrizeInfo(cur_id);
@@ -191,7 +191,7 @@ function dealPrizing(btn){
 function empty(){
     for(var i=0;i<prizeList.length;i++){
         for(var j=0;j<prizeList[i].winner_id.length;j++){
-            prizeList[i].winner_id[j]=0;
+            prizeList[i].winner_id[j]=-1;
         }
         prizeList.num_selected = 0;
         renderPrizeInfo(i, sidebar=true);
@@ -200,7 +200,7 @@ function empty(){
 }
 
 function empty_one(id, wid){
-    prizeList[id].winner_id[wid] = 0;
+    prizeList[id].winner_id[wid] = -1;
     prizeList[id].num_selected = wid;
     
     renderPrizeInfo(id,sidebar=true);
@@ -255,7 +255,5 @@ window.onload=function(){
 
     renderPrizeInfo(cur_id);
 
-    setTimeout(() => {
-        num_person = prompt("请输入参与抽奖总人数："); 
-    }, 300);
+    num_person = 1000;
 }

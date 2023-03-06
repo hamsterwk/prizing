@@ -10,7 +10,7 @@
 
 body{
     background-image: url("../background.jpg");
-    background-size: cover;
+    background-size:100%;
     background-repeat: no-repeat;
     background-color: black;
     user-select: none;
@@ -19,20 +19,20 @@ body{
     background-repeat: repeat;
 }
 .main{
-    font-size: 60px;
+    font-size: 3vw;
 }
 
 .sidebar{
-    font-size: 28px;
-    padding-bottom: 20px;
+    font-size: 1.4vw;
+    padding-bottom: 1vw;
 }
 
 .sidebar1{
-    font-size: 36px;
+    font-size: 2vw;
 }
 
 .sidebar2{
-    font-size: 24px;
+    font-size: 1.2vw;
 }
 
 .sidebar-winner{
